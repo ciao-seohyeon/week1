@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.week11111;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -21,6 +21,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.week11111.R;
 import com.google.android.material.tabs.TabLayout;
 
 import org.json.JSONArray;
