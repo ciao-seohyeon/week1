@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Context;
 import android.content.res.AssetManager;
 import android.media.Image;
+import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,9 +20,13 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.MediaController;
 import android.widget.TextView;
+import android.widget.VideoView;
 
 import com.google.android.material.tabs.TabLayout;
+import com.google.android.youtube.player.YouTubePlayer;
+import com.google.android.youtube.player.YouTubePlayerFragment;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -34,8 +39,10 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity{
     ArrayList<phone> phoneList = new ArrayList<phone>();
+
+    private static final int RECOVERY_DIALOG_REQUEST = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
         String json_str = getJsonString();
         jsonParsing(json_str);
 
+        // tab 만들기
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabLayout) ;
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -74,6 +82,16 @@ public class MainActivity extends AppCompatActivity {
         // 두 번째 tab
         GridView gridView = (GridView)findViewById(R.id.grid_picture);
         gridView.setAdapter(new ImageAdapter(this));
+
+        // 세 번째 tab video
+        VideoView videoView = findViewById(R.id.video_view);
+        String videoPath = "android.resource://" + getPackageName() + "/" + R.raw.summer_hate;
+        Uri uri = Uri.parse(videoPath);
+        videoView.setVideoURI(uri);
+
+        MediaController mediaController = new MediaController(this);
+        videoView.setMediaController(mediaController);
+        mediaController.setAnchorView(videoView);
     }
 
 
@@ -260,7 +278,7 @@ public class MainActivity extends AppCompatActivity {
     private void changeView(int index) {
         RecyclerView textView1 = (RecyclerView) findViewById(R.id.recycler_view) ;
         GridView textView2 = (GridView) findViewById(R.id.grid_picture) ;
-        TextView textView3 = (TextView) findViewById(R.id.text3) ;
+        VideoView textView3 = (VideoView) findViewById(R.id.video_view) ;
 
         switch (index) {
             case 0 :

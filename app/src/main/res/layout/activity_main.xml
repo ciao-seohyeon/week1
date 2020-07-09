@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="true"
     tools:context=".MainActivity">
 
     <com.google.android.material.tabs.TabLayout
@@ -55,30 +57,10 @@
                 android:visibility="invisible" />
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/text3"
+        <VideoView
+            android:id="@+id/video_view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="뭐하지"
-            android:visibility="invisible" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <Button
-                android:id="@+id/button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Button" />
-
-            <com.google.android.youtube.player.YouTubePlayerView
-                android:id="@+id/playerView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-        </LinearLayout>
+            android:layout_height="fill_parent" />
 
     </FrameLayout>
 
